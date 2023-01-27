@@ -1,0 +1,14 @@
+.App {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+    padding-bottom: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.Alert {
+    font-size: 32px;
+    font-weight: 700;
+    margin-left: 340px;
+}
