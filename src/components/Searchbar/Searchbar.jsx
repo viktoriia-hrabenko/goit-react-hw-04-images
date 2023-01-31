@@ -3,21 +3,13 @@ import css from '../Searchbar/Searchbar.module.css';
 import PropTypes from 'prop-types';
 
 export class Searchbar extends Component {
-  state = {
-    searchQuery: '',
-  };
-
-  handleChange = e => {
-    this.setState({ searchQuery: e.currentTarget.value.toLowerCase() });
-  };
-
   handleSubmit = e => {
+    const queryValue = e.target.searchQuery.value;
     e.preventDefault();
-    if (this.state.searchQuery.trim() === '') {
-      return alert('Please enter something :)');
+    if (queryValue.trim() === '') {
+      return alert('Please enter something:)');
     }
-    this.props.onSubmit(this.state.searchQuery);
-    this.setState({ searchQuery: '' });
+    this.props.onSubmit(queryValue.toLowerCase());
   };
 
   render() {
@@ -33,8 +25,6 @@ export class Searchbar extends Component {
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
-            value={this.state.searchQuery}
-            onChange={this.handleChange}
           />
         </form>
       </header>

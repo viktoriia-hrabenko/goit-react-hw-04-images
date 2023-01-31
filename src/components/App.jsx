@@ -12,7 +12,6 @@ export class App extends Component {
     searchQuery: '',
     images: [],
     page: 1,
-    per_page: 12,
     isLoading: false,
     loadMore: false,
     error: null,
@@ -38,7 +37,7 @@ export class App extends Component {
 
       this.setState(prevState => ({
         images: [...prevState.images, ...hits],
-        loadMore: this.state.page < Math.ceil(totalHits / this.state.per_page),
+        loadMore: this.state.page < Math.ceil(totalHits / 12),
       }));
       if (totalHits === 0) {
         this.setState({ noResults: true });
