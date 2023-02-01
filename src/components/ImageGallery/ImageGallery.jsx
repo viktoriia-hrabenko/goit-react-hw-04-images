@@ -23,6 +23,7 @@ ImageGallery.propTypes = {
       webformatURL: PropTypes.string,
       tags: PropTypes.string,
       largeImageURL: PropTypes.string,
+      openModal: PropTypes.func,
     })
     ),
   openModal: PropTypes.func,
