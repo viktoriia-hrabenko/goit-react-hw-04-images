@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
 import css from '../Searchbar/Searchbar.module.css';
 import PropTypes from 'prop-types';
 
-export class Searchbar extends Component {
-  handleSubmit = e => {
+export const Searchbar = ({onSubmit}) => {
+  const handleSubmit = e => {
     const queryValue = e.target.searchQuery.value;
     e.preventDefault();
     if (queryValue.trim() === '') {
       return alert('Please enter something:)');
     }
-    this.props.onSubmit(queryValue.toLowerCase());
+    onSubmit(queryValue.toLowerCase());
   };
 
-  render() {
     return (
       <header className={css.Searchbar}>
-        <form onSubmit={this.handleSubmit} className={css.SearchForm}>
+        <form onSubmit={handleSubmit} className={css.SearchForm}>
           <button type="submit" className={css.SearchFormButton}></button>
 
           <input
@@ -29,7 +27,6 @@ export class Searchbar extends Component {
         </form>
       </header>
     );
-  }
 }
 
 Searchbar.propTypes = {
