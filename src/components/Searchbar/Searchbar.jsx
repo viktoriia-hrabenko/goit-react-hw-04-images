@@ -10,12 +10,11 @@ export const Searchbar = ({onSubmit}) => {
     }
     onSubmit(queryValue.toLowerCase());
   };
-
+  
     return (
       <header className={css.Searchbar}>
         <form onSubmit={handleSubmit} className={css.SearchForm}>
           <button type="submit" className={css.SearchFormButton}></button>
-
           <input
             className={css.SearchFormInput}
             name="searchQuery"

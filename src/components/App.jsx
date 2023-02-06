@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
-
 import { fetchImages } from "../services/api";
-
 import { Searchbar } from "./Searchbar/Searchbar";
 import { ImageGallery } from "./ImageGallery/ImageGallery";
 import { Modal } from "./Modal/Modal";
 import { Loader } from "./Loader/Loader";
 import { Button } from "./Button/Button";
-
 import css from "./App.module.css";
 
 export const App = () => {
@@ -38,7 +35,6 @@ export const App = () => {
       if (hits.length === 0) {
         setNoResults(true);
       }
-      console.log(hits, totalHits);
       setImages(prevImages => [...prevImages, ...hits]);
       setLoadMore(page < Math.ceil(totalHits / 12));
     } catch (error) {
@@ -61,7 +57,6 @@ export const App = () => {
   };
 
   const openModal = largeImageURL => {
-    console.log(largeImageURL);
     setShowModal(true);
     setLargeImageURL(largeImageURL);
   };
@@ -73,26 +68,11 @@ export const App = () => {
   return (
     <div className={css.App}>
       <Searchbar onSubmit={formSubmit} />
-      
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <ImageGallery images={images} openModal={openModal} />
-      )}
-
-      {noResults && <p className={css.Alert}> No images found. Please try another query :) </p>
-        }
-
+      {isLoading ? (<Loader />) : (<ImageGallery images={images} openModal={openModal} />)}
+      {noResults && <p className={css.Alert}> No images found. Please try another query :) </p>}
       {error && <p className={css.Alert}>Oops, something went wrong :(</p>}
-
-      {loadMore && <Button onloadMore={onloadMore} page={page} />}
-
-      {showModal && (
-        <Modal largeImageURL={largeImageURL} onClose={closeModal} />
-      )}
+      {loadMore && <Button onloadMore={onloadMore} />}
+      {showModal && (<Modal largeImageURL={largeImageURL} onClose={closeModal} />)}
     </div>
   );
-  // }
 };
-
-
